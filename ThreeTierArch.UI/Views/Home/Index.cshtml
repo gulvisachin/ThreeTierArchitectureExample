@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col-4">
+        <div style="width:250px;height:120px;background-color:lightgray;black;font-weight:700">
+            @await Component.InvokeAsync("CountCountry")
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div style="width:250px;height:120px;background-color:lightgray;color:black;font-weight:700">
+            @await Component.InvokeAsync("CountState")
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div style="width:250px;height:120px;background-color:lightgray;color:black;font-weight:700">
+            @await Component.InvokeAsync("CountCity")
+        </div>
+
+    </div>
+</div>

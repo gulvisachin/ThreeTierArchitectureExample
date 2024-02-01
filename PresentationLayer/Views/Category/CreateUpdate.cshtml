@@ -1,0 +1,44 @@
+﻿@model CategoryVM;
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<br />
+<h2 class="text-info">@((Model.Category == null || Model.Category.Id == 0) ? "Create" : "Update") Category</h2>
+<form action="CreateUpdate" method="post">
+    @Html.AntiForgeryToken()
+    <input hidden asp-for="Category.Id" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Category.Name"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="Category.Name" class="form-control" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Category.DisplayOrder"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group">
+        @if (Model.Category == null || Model.Category.Id == 0)
+        {
+            <input type="submit" value="Create" class="btn btn-success" />
+        }
+        else
+        {
+            <input type="submit" value="Update" class="btn btn-success" asp-route-id="@Model.Category.Id" />
+        }
+        <a asp-action="Index" class="btn btn-primary">Back</a>
+    </div>
+</form>

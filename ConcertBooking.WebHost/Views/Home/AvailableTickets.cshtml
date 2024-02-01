@@ -1,0 +1,28 @@
+﻿@model AvailableTicketVM
+@{
+    ViewData["Title"] = "AvailableTickets";
+}
+
+<div class="container mt-5">
+    <h2>@Model.ConcertName - Available Tickets</h2>
+    <hr />
+    <form method="post" asp-action="BookTickets" asp-controller="Home">
+        <div class="row">
+            @foreach (var seat in Model.AvailableSeats)
+            {
+                <div class="col-md-3">
+                    <!-- Adjust the column size based on your preference -->
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" name="selectedSeats" value="@seat" id="seat_@seat" />
+                        <label class="form-check-label" for="seat_@seat">
+                            Seat #@seat
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+        <input type="hidden" asp-for="ConcertId" />
+        <button type="submit" class="btn btn-success mt-3">Book selected Seat</button>
+    </form>
+</div>
+

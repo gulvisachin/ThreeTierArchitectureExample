@@ -1,0 +1,89 @@
+﻿@model CreateConcertVM;
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<br />
+<h2 class="text-info">@((Model == null || Model.Id == 0) ? "Create" : "Update") Concert</h2>
+<div class="row">
+    @if (Model.Id > 0)
+    {
+        <div class="col-4">
+            <img src="@Model.strImageUrl" width="200" height="200" style="border:groove" />
+        </div>
+    }
+    <div class="col-8">
+        <form action="CreateUpdate" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input hidden asp-for="Id" />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="DateTime"></label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="DateTime" class="form-control" />
+                    <span asp-validation-for="DateTime" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="VenueId"></label>
+                </div>
+                <div class="col-4">
+                    <select asp-for="VenueId" asp-items="@ViewBag.VenuesList" class="form-control">
+                        <option selected disabled>Choose Venue</option>
+                    </select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="ArtistId"></label>
+                </div>
+                <div class="col-4">
+                    <select asp-for="ArtistId" asp-items="@ViewBag.ArtistList" class="form-control">
+                        <option selected disabled>Choose Artist</option>
+                    </select>
+                    <span asp-validation-for="ArtistId" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="ImageUrl"></label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+            </div>
+            <br />
+            <div class="form-group">
+                <partial name="_FormButtons" model="@Model.Id" />
+            </div>
+        </form>
+    </div>
+</div>

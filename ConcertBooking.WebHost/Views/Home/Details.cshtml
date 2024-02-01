@@ -1,0 +1,74 @@
+﻿@model ConcertBooking.WebHost.ViewModels.HomeViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Concert Details</h1>
+
+<div class="row">
+    <div class="col-4">
+        <img src="@Model.ConcertImage" alt="Concert Image" class="rounded-circle mt-2" width="200" height="200" />
+        <img src="@Model.ArtistImage" alt="Artist Image" class="rounded-circle mt-2" width="200" height="200" />
+    </div>
+    <div class="col-8">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ConcertId)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ConcertId)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ConcertName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ConcertName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ConcertDescription)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ConcertDescription)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ConcertAddress)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ConcertAddress)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ConcertDateTime)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ConcertDateTime)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ArtistName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ArtistName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.VenueName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.VenueName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.VenueAddress)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.VenueAddress)
+            </dd>
+            <dt class="col-sm-4">
+                <a class="btn btn-primary" asp-action="AvailableTickets" asp-controller="Home" asp-route-concertId="@Model.ConcertId">See available Tickets</a>
+
+            </dt>
+            <dd class="col-sm-8">
+                <a class="btn btn-info" asp-action="Index">Back to List</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+

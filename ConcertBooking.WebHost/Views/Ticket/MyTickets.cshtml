@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BookingVM>
+
+@{
+    ViewData["Title"] = "MyTickets";
+}
+
+<h1>MyTickets</h1>
+<a class="btn btn-info" asp-controller="Home" asp-action="Index">Back to Home</a>
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-warning mt-2">
+        You have not booked any tickets
+    </div>
+}
+else
+{
+    foreach (var booking in Model)
+    {
+        <div class="card mt-4" id="booking-@booking.BookingId">
+            <div class="card-header">
+                Booking ID: @booking.BookingId - Date : @booking.BookingDate.ToString("dd/MM/yyyy")
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@booking.ConcertName</h5>
+                <ul class="list-group">
+                    @foreach (var ticket in booking.Tickets)
+                    {
+                        <li class="list-group-item">
+                            Seat Number : @ticket.SeatNumber
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" onclick="printTicket('@booking.BookingId')">Print Ticket</button>
+            </div>
+        </div>
+    }
+}
+
+@section scripts{
+    <script src="~/js/Ticket/Ticket.js"></script>
+}

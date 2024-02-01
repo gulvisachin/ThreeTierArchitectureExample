@@ -1,0 +1,47 @@
+﻿@model VenueVM;
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<br />
+<h2 class="text-info">@((Model == null || Model.venue.Id == 0) ? "Create" : "Update") Venue</h2>
+<form action="CreateUpdate" method="post">
+    @Html.AntiForgeryToken()
+    <input hidden asp-for="venue.Id" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="venue.Name"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="venue.Name" class="form-control" />
+            <span asp-validation-for="venue.Name" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="venue.Address"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="venue.Address" class="form-control" />
+            <span asp-validation-for="venue.Address" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="venue.SeatCapacity"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="venue.SeatCapacity" class="form-control" />
+            <span asp-validation-for="venue.SeatCapacity" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group">
+        <partial name="_FormButtons" model="@Model.venue.Id"></partia>
+    </div>
+</form>

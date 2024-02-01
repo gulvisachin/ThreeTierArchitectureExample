@@ -1,0 +1,51 @@
+﻿@model PeopleVM;
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<br />
+<h2 class="text-info">@((Model.People == null || Model.People.Id == 0) ? "Create" : "Update") People</h2>
+<form action="CreateUpdate" method="post">
+    @Html.AntiForgeryToken()
+    <input hidden asp-for="People.Id" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="People.Name"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="People.Name" class="form-control" required />
+            <span asp-validation-for="People.Name" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="People.City"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="People.City" class="form-control" />
+            <span asp-validation-for="People.City" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group">
+        @if (Model.People == null || Model.People.Id == 0)
+        {
+            <input type="submit" value="Create" class="btn btn-success" />
+        }
+        else
+        {
+            <input type="submit" value="Update" class="btn btn-success" asp-route-id="@Model.People.Id" />
+        }
+        <a asp-action="Index" class="btn btn-primary">Back</a>
+    </div>
+</form>
+
+@section scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

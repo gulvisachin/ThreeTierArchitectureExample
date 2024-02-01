@@ -1,0 +1,36 @@
+﻿@model CreateStateVM;
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<br />
+<h2 class="text-info">@((Model == null || Model.Id == 0) ? "Create" : "Update") State</h2>
+<form action="CreateUpdate" method="post">
+    @Html.AntiForgeryToken()
+    <input hidden asp-for="Id" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Name"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="CountryId"></label>
+        </div>
+        <div class="col-4">
+            <select asp-for="CountryId" asp-items="@ViewBag.CountryList" class="form-control">
+                <option selected disabled>Choose Country</option>
+            </select>
+            <span asp-validation-for="CountryId" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <partial name="_FormButtons" model="@Model.Id" />
+    </div>
+</form>

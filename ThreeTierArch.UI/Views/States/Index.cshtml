@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div>
+        <h2>States</h2>
+        <div class="col-6 text-lg-end">
+            <a class="navbar-brand" asp-area="" asp-controller="States" asp-action="CreateUpdate" asp-route-id="0"><i class="bi bi-plus-circle"></i> New Entry</a>
+        </div>
+    </div>
+    <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+@section scripts{
+    <script src="~/js/Masters/state/state.js"></script>
+    <script src="~/js/common/Common.js"></script>
+}
