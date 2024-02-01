@@ -49,7 +49,6 @@ namespace ConcertBooking.WebHost.Controllers
         {
             var concert = await _concertRepo.GetByIdAsych(id);
             if(concert == null) return NotFound();
-
             //var vm = new HomeViewModel
             //{
             //    ConcertId = concert.Id,
@@ -63,7 +62,10 @@ namespace ConcertBooking.WebHost.Controllers
             //    VenueName = concert.Venue.Name,
             //    VenueAddress = concert.Venue.Address
             //};
+            #region Implement Auto mapper feature
             var vm = _mapper.Map<HomeViewModel>(concert);
+            #endregion
+
             return View(vm);
         }
         [Authorize]
