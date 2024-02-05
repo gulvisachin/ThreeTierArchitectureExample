@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_Loader" />
+<div class="row">
+    <div>
+        <h2>States</h2>
+        <div class="col-6 text-lg-end">
+            <a class="navbar-brand" asp-area="" asp-controller="Concerts" asp-action="CreateUpdate" asp-route-id="0"><i class="bi bi-plus-circle"></i> New Entry</a>
+        </div>
+    </div>
+    <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>DateTime</th>
+                <th>Venue</th>
+                <th>Artist</th>
+                <th>ImageUrl</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+@section scripts{
+    <script src="~/js/Masters/Concert.js"></script>
+    <script src="~/js/common/Common.js"></script>
+}

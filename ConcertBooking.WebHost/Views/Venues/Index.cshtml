@@ -1,28 +1,54 @@
-﻿@{
+﻿@model IEnumerable<Venue>
+@{
     ViewData["Title"] = "Index";
 }
 
-<div class="row">
-    <div>
-        <h2>Venues</h2>
-        <div class="col-6 text-lg-end">
-            <a class="navbar-brand" asp-area="" asp-controller="Venues" asp-action="CreateUpdate" asp-route-id="0"><i class="bi bi-plus-circle"></i> New Entry</a>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h3 class="card-title">Concert Details</h3>
+            </div>
+            <div>
+                <a class="btn btn-primary" asp-area="" asp-controller="Venues" asp-action="CreateUpdate" asp-route-id="0"><i class="fa fa-plus" aria-hidden="true"> New Entry </i></a>
+            </div>
         </div>
     </div>
-    <table id="myTable" class="table table-bordered table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>SeatCapacity</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">SeatCapacity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.SeatCapacity</td>
+                        <td>
+                            <a asp-action="CreateUpdate" asp-controller="Venues" asp-route-Id="@item.Id" class="btn btn-info"><i class="fa fa-pancil" aria-hidden="true"> Edit</i></a>
+                            <a onClick=Remove("/Venues/Delete/@item.Id") class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"> Delete</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
-
 @section scripts{
-    <script src="~/js/Masters/Venue.js"></script>
+    <script type="text/javascript">
+        function Remove(url) {
+            DeleteRecord(url)
+        }
+    </script>
+    @*<script src="~/js/Masters/Concert.js"></script>*@
     <script src="~/js/common/Common.js"></script>
 }

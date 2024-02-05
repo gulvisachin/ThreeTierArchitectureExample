@@ -43,9 +43,10 @@ namespace ConcertBooking.WebHost.Controllers
             var lstArtists = await _artistRepo.GetAllAsych();
             return Json(new { data = lstArtists ?? null });
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var lstArtists = await _artistRepo.GetAllAsych();
+            return View(lstArtists);
         }
 
         public async Task<IActionResult> CreateUpdate(int id)

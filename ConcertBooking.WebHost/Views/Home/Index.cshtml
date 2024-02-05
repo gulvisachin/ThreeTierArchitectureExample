@@ -2,21 +2,74 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .ConcertBackImag {
+        background-image: url(/AdminLTE/dist/img/user7-128x128.jpg);
+        /*background-repeat: no-repeat;*/
+        background-attachment: fixed;
+        background-position: center;
+    }
+</style>
+<h3 class="mt-4 mb-4">Concert Dashboard</h3>
 
-
-<div class="row mt-2">
-@foreach(var item in Model){
-        <div class="col-4 mb-2">
-            <div class="card" style="width: 18rem">
-                <img src="@item.ConcertImage" class="card-img-top" alt="..." height="150" width="100">
-                <div class="card-body">
-                    <h5 class="card-title">Name  : @item.ConcertName</h5>
-                    <h5 class="card-title">Actor : @item.ArtistName</h5>
-                    <h5 class="card-title">Address : @item.ConcertAddress</h5>
-                    <p class="card-text">@item.ConcertDescription</p>
-                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.ConcertId" class="btn btn-primary">Book Now</a>
+<div class="row">
+    <!-- /.col -->
+    @foreach(var item in Model)
+    {
+        <div class="col-md-4">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header text-white" style="background: url(@item.ConcertImage) center center;">
+                    <h3 class="widget-user-username text-right">@item.ConcertName</h3>
+                    <h5 class="widget-user-desc text-right">Concert</h5>
+                </div>
+                <div class="widget-user-image">
+                    <img class="img-circle" src="@item.ArtistImage" alt="User Avatar" style="height:90px">
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">@item.ConcertAddress</h5>
+                                <span class="description-text">Address</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">@item.ArtistName</h5>
+                                <span class="description-text">Artist</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4">
+                            <div class="description-block">
+                                <h5 class="description-header">@item.ConcertDescription</h5>
+                                <span class="description-text">Concert</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@item.ConcertId" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                    <!-- /.row -->
                 </div>
             </div>
+            <!-- /.widget-user -->
         </div>
-}
+    }
+    
+    <!-- /.col -->
 </div>
+<!-- /.row -->
+
+
+

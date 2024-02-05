@@ -25,9 +25,9 @@ namespace ConcertBooking.WebHost.Controllers
             var lstVenues = await _venueRepo.GetAllAsych();
             return Json(new { data = lstVenues ?? null });
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _venueRepo.GetAllAsych());
         }
 
         public async Task<IActionResult> CreateUpdate(int id)

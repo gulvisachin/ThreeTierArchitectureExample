@@ -16,7 +16,8 @@ function DeleteRecord(url) {
                 type: 'DELETE',
                 success: function (data) {
                     if (data.success) {
-                        dtable.ajax.reload();
+                        /* dtable.ajax.reload();*/
+                        location.reload();
                         toastr.success(data.message)
                     }
                     else {

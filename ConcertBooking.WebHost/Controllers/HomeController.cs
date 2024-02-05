@@ -45,6 +45,11 @@ namespace ConcertBooking.WebHost.Controllers
             return View(activeConcerts);
         }
 
+        public IActionResult CountSummary()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             var concert = await _concertRepo.GetByIdAsych(id);

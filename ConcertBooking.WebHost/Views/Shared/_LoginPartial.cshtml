@@ -4,25 +4,55 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-            <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-light">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-            <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="fa fa-window-close"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" class="dropdown-item">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            Hello @UserManager.GetUserName(User)!
+                            <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                        </h3>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" class="dropdown-item">
+                <i class="fas fa-lock"></i>
+                Logout
+            </a>
+        }
+        else
+        {
+            <a id="register" asp-area="Identity" asp-page="/Account/Register" class="dropdown-item">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            Register
+                            <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">Register new user</p>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a id="login" asp-area="Identity" asp-page="/Account/Login" class="dropdown-item">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            Login
+                            <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">Login in application</p>
+                    </div>
+                </div>
+            </a>
+        }
+       
+    </div>
+</li>

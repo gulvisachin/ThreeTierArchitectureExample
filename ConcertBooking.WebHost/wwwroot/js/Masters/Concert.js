@@ -3,6 +3,7 @@ $(document).ready(function () {
     dtable = $('#myTable').DataTable({
         "ajax": {
             "url": "Concerts/AllConcerts",
+            "loadingElementId":"loader"
             //  success: function (resp) {
             //    console.log(resp)
             //}
